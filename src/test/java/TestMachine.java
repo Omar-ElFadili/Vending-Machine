@@ -46,8 +46,12 @@ public class TestMachine {
     }
 
     @Test
-    public void shouldGenerateExceptionWhenProductNotExist() throws Exception {
+    public void shouldGenerateExceptionWhenProductNotFounded() throws Exception {
         HashMap<Product, Integer> products  = new HashMap<>();
+        products.put(Product.WATER, 0);
+        products.put(Product.COCA, 10);
+        products.put(Product.TWIX,10);
+        products.put(Product.BUENO, 10);
         HashMap<Coins, Integer> coinsReserve = new HashMap<>();
         coinsReserve.put(Coins.ONE, 20);
         coinsReserve.put(Coins.TWO, 20);
@@ -64,6 +68,10 @@ public class TestMachine {
         products.put(Product.TWIX,10);
         products.put(Product.BUENO, 10);
         HashMap<Coins, Integer> coinsReserve = new HashMap<>();
+        coinsReserve.put(Coins.ONE, 0);
+        coinsReserve.put(Coins.TWO, 0);
+        coinsReserve.put(Coins.FIVE, 0);
+        coinsReserve.put(Coins.TEN, 0);
         Machine machine = new Machine(products, coinsReserve);
 
         assertThrows(CoinsNotSufficientException.class, () -> machine.selectProduct(Product.WATER, coinsReserve));
